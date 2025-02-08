@@ -193,7 +193,7 @@ export default function ChurchServiceReport() {
                     {songSearch[index] && (
                       <div className="absolute mt-1 w-full bg-white border border-gray-300 rounded-md shadow-lg z-10">
                         {songDatabase
-                          .filter((s) => s.title.toLowerCase().includes(songSearch[index].toLowerCase()))
+                          .filter((s) => s.title.toLowerCase().includes(songSearch[index]?.toLowerCase() ?? ""))
                           .map((s) => (
                             <div
                               key={s.id}

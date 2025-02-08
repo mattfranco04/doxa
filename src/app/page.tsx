@@ -48,7 +48,7 @@ export default function ChurchServiceReport() {
   const [reportData, setReportData] = useState<ReportData>({
     date: "",
     theme: "",
-    songs: Array(4).fill({ id: 0, number: "", title: "", timesPlayedLastMonth: 0 }),
+    songs: [],
     announcements: [],
     spiritualGifts: [],
   })
@@ -58,7 +58,7 @@ export default function ChurchServiceReport() {
     // Initialize with 4 empty song slots
     setReportData((prev) => ({
       ...prev,
-      songs: Array(4).fill({ id: 0, number: "", title: "", timesPlayedLastMonth: 0 }),
+      songs: [],
     }))
   }, [])
 
@@ -116,7 +116,7 @@ export default function ChurchServiceReport() {
     }))
   }
 
-  const updateSpiritualGift = (index: number, field: keyof SpiritualGift, value: any) => {
+  const updateSpiritualGift = (index: number, field: keyof SpiritualGift, value: string) => {
     setReportData((prev) => ({
       ...prev,
       spiritualGifts: prev.spiritualGifts.map((gift, i) => (i === index ? { ...gift, [field]: value } : gift)),

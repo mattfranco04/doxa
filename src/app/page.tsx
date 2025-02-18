@@ -197,13 +197,13 @@ export default function ChurchServiceReport() {
                           .map((s) => (
                             <div
                               key={s.id}
-                              className="px-4 py-2 hover:bg-gray-100 cursor-pointer flex justify-between items-center"
+                              className="px-4 py-2 text-black hover:bg-gray-100 cursor-pointer flex justify-between items-center"
                               onClick={() => updateSong(index, s)}
                             >
                               <span>
                                 {s.number}. {s.title}
                               </span>
-                              <span className="text-sm text-gray-500">
+                              <span className="text-sm text-black">
                                 Played {s.timesPlayedLastMonth} time(s) last month
                               </span>
                             </div>

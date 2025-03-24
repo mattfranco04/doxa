@@ -16,6 +16,7 @@ export const env = createEnv({
     SINGLESTORE_HOST: z.string(),
     SINGLESTORE_PORT: z.string(),
     SINGLESTORE_DB_NAME: z.string(),
+    
   },
 
   /**

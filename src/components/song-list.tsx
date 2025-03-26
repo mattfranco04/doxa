@@ -89,7 +89,6 @@ const SongItem = ({ song, index, onRemove, onMove }: SongItemProps) => {
 
   return (
     <div
-      ref={dragPreview}
       className={`mb-2 flex items-center rounded-md border p-3 ${isDragging ? "opacity-50" : ""}`}
     >
       <div ref={ref} className="mr-2 cursor-move">
@@ -98,7 +97,7 @@ const SongItem = ({ song, index, onRemove, onMove }: SongItemProps) => {
       <div className="flex-1">
         <div className="font-medium">{song.title}</div>
         <div className="text-sm text-muted-foreground">
-          #{song.number} • {song.category}
+          {song.number}
         </div>
       </div>
       <Button

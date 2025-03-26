@@ -56,11 +56,11 @@ export default function SongSearch({ songs, onAddSong }: SongSearchProps) {
                 <div>
                   <div className="font-medium">{song.title}</div>
                   <div className="text-sm text-muted-foreground">
-                    #{song.number} • {song.theme}
+                    {song.number} • {song.theme}
                   </div>
                   <div className="mt-1 text-xs">
                     <span className="text-muted-foreground">Last played: </span>
-                    {new Date(song.lastPlayed).toLocaleDateString() ?? "N/A"}
+                    {song.lastPlayed?.toLocaleString() ?? "N/A"}
                   </div>
                   <div className="text-xs">
                     <span className="text-muted-foreground">
@@ -72,7 +72,6 @@ export default function SongSearch({ songs, onAddSong }: SongSearchProps) {
                 <Button
                   size="sm"
                   variant="ghost"
-                  onClick={() => onAddSong(song)}
                   className="h-8 w-8 p-0"
                 >
                   <Plus className="h-4 w-4" />

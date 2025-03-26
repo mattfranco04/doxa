@@ -125,7 +125,7 @@ export default function ServicePlanner(props: {
     const newSongs = [...selectedSongs];
     const draggedSong = newSongs[dragIndex];
     newSongs.splice(dragIndex, 1);
-    newSongs.splice(hoverIndex, 0, draggedSong);
+    // newSongs.splice(hoverIndex, 0, draggedSong);
     setSelectedSongs(newSongs);
   };
 

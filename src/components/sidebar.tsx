@@ -4,6 +4,8 @@ import { Home, Files, Music, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "motion/react";
 import { useState } from "react";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import Image from "next/image";
 
 type BaseRoute = {
   name: string;
@@ -71,16 +73,16 @@ export default function Sidebar() {
 
   return (
     <div className="bg-background flex h-full max-h-screen w-64 shrink-0 flex-col overflow-auto border-r p-4">
-      <Link href="/">
-        <h1 className="text-primary text-5xl font-bold">doxa</h1>
+      <Link href="/" className="flex">
+        <h1 className="text-primary font-gasoek text-6xl">doxa</h1>
       </Link>
-      <nav className="mt-4 space-y-3">
+      <nav className="mt-8 space-y-5">
         {ROUTES.map((route, index) => (
           <div key={index}>
             {route.isExpandable ? (
               <>
                 <motion.div
-                  className="hover:text-accent flex cursor-pointer items-center gap-2 p-2 select-none"
+                  className="hover:text-primary flex cursor-pointer items-center gap-2 text-xl select-none"
                   onClick={() => toggleRoute(route.name)}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
@@ -103,9 +105,9 @@ export default function Sidebar() {
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.3, ease: "easeInOut" }}
-                      className="overflow-hidden"
+                      className="-mt-[3px] overflow-hidden"
                     >
-                      <div className="border-primary ml-4 space-y-1 border-l-2 px-2">
+                      <div className="border-primary ml-2 space-y-1 border-l-2 px-2 pt-2">
                         {route.children.map((child, childIndex) => (
                           <motion.div
                             key={childIndex}
@@ -118,7 +120,7 @@ export default function Sidebar() {
                           >
                             <Link href={child.href}>
                               <motion.div
-                                className="text-primary hover:text-accent flex items-center gap-2 rounded p-1 transition-colors"
+                                className="text-primary hover:text-primary flex items-center gap-2 p-1 transition-colors"
                                 whileHover={{ x: 4 }}
                                 transition={{ duration: 0.15 }}
                               >
@@ -135,9 +137,8 @@ export default function Sidebar() {
             ) : (
               <Link href={route.href}>
                 <motion.div
-                  className="hover:text-accent flex items-center gap-2 rounded p-2 transition-colors"
+                  className="hover:text-primary flex items-center gap-2 rounded text-xl transition-colors"
                   whileHover={{ scale: 1.02, x: 4 }}
-                  whileTap={{ scale: 0.98 }}
                   transition={{ duration: 0.15 }}
                 >
                   {route.icon && <route.icon className="h-6 w-6" />}
@@ -148,6 +149,13 @@ export default function Sidebar() {
           </div>
         ))}
       </nav>
+      <div className="mt-auto flex items-center gap-3">
+        <Avatar>
+          <AvatarImage src="https://avatars.githubusercontent.com/u/159507328?v=4" />
+          <AvatarFallback>MF</AvatarFallback>
+        </Avatar>
+        <p>Matthew Franco</p>
+      </div>
     </div>
   );
 }

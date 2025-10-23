@@ -5,8 +5,10 @@
 
 @theme {
   --font-sans:
-    var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif,
+    var(--font-karla), ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-karla: var(--font-karla), ui-sans-serif, system-ui, sans-serif;
+  --font-gasoek: var(--font-gasoek-one), ui-sans-serif, system-ui, sans-serif;
 }
 
 @theme inline {

@@ -5,7 +5,6 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "motion/react";
 import { useState } from "react";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import Image from "next/image";
 
 type BaseRoute = {
   name: string;
@@ -73,7 +72,7 @@ export default function Sidebar() {
 
   return (
     <div className="bg-background flex h-full max-h-screen w-64 shrink-0 flex-col overflow-auto border-r p-4">
-      <Link href="/" className="flex">
+      <Link href="/">
         <h1 className="text-primary font-gasoek text-6xl">doxa</h1>
       </Link>
       <nav className="mt-8 space-y-5">
@@ -105,9 +104,9 @@ export default function Sidebar() {
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.3, ease: "easeInOut" }}
-                      className="-mt-[3px] overflow-hidden"
+                      className="overflow-hidden"
                     >
-                      <div className="border-primary ml-2 space-y-1 border-l-2 px-2 pt-2">
+                      <div className="border-primary -mt-1 ml-2 border-l-2 px-2 pt-2">
                         {route.children.map((child, childIndex) => (
                           <motion.div
                             key={childIndex}
@@ -137,7 +136,7 @@ export default function Sidebar() {
             ) : (
               <Link href={route.href}>
                 <motion.div
-                  className="hover:text-primary flex items-center gap-2 rounded text-xl transition-colors"
+                  className="hover:text-primary flex items-center gap-2 text-xl transition-colors"
                   whileHover={{ scale: 1.02, x: 4 }}
                   transition={{ duration: 0.15 }}
                 >

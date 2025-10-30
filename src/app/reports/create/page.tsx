@@ -1,6 +1,6 @@
 'use client';
 
-import SongListItem from '@/components/song-item';
+import SongListItem from '@/components/song-list-item';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from '@/components/ui/empty';
@@ -99,15 +99,15 @@ export default function CreateReportsPage() {
     };
 
     return (
-        <div className="container mx-auto flex max-h-screen min-h-full flex-col space-y-6">
-            <div>
+        <div className="container mx-auto flex h-screen flex-col space-y-6 pb-6">
+            <div className="shrink-0">
                 <h1 className="mb-2 text-3xl font-bold">Create Service Report</h1>
                 <p className="text-muted-foreground">Document today&apos;s service with songs, spiritual gifts, and other details.</p>
             </div>
-            <div className="grid min-h-0 flex-1 grid-cols-1 gap-4 lg:grid-cols-2">
+            <div className="grid min-h-0 flex-1 grid-cols-1 gap-4 overflow-hidden lg:grid-cols-2">
                 {/* Left Column */}
-                <div className="flex flex-col space-y-4 overflow-hidden">
-                    <div className="flex-1 space-y-4 overflow-y-auto">
+                <div className="flex flex-col overflow-hidden">
+                    <div className="flex-1 space-y-4 overflow-y-auto pr-2">
                         {/* Spiritual Gifts */}
                         <Card>
                             <CardHeader>
@@ -121,7 +121,7 @@ export default function CreateReportsPage() {
                                         {spiritualGifts.map((gift) => (
                                             <div
                                                 key={gift.id}
-                                                className="rounded-lg border p-3"
+                                                className="relative rounded-lg border p-3"
                                             >
                                                 {editingGiftId === gift.id ? (
                                                     // Editing mode
@@ -175,7 +175,7 @@ export default function CreateReportsPage() {
                                                             <p className="font-medium capitalize">{gift.type}</p>
                                                             <p className="text-muted-foreground mt-1 text-sm">{gift.description}</p>
                                                         </div>
-                                                        <div className="flex space-x-1">
+                                                        <div className="absolute top-1 right-2">
                                                             <Tooltip>
                                                                 <TooltipTrigger asChild>
                                                                     <Button
@@ -191,14 +191,21 @@ export default function CreateReportsPage() {
                                                                     <p>Edit gift</p>
                                                                 </TooltipContent>
                                                             </Tooltip>
-                                                            <Button
-                                                                variant="ghost"
-                                                                size="sm"
-                                                                onClick={() => removeSpiritualGift(gift.id)}
-                                                                className="h-8 w-8 p-0"
-                                                            >
-                                                                <X className="h-4 w-4" />
-                                                            </Button>
+                                                            <Tooltip>
+                                                                <TooltipTrigger asChild>
+                                                                    <Button
+                                                                        variant="ghost"
+                                                                        size="sm"
+                                                                        onClick={() => removeSpiritualGift(gift.id)}
+                                                                        className="h-8 w-8 p-0"
+                                                                    >
+                                                                        <X className="h-4 w-4" />
+                                                                    </Button>
+                                                                </TooltipTrigger>
+                                                                <TooltipContent>
+                                                                    <p>Delete gift</p>
+                                                                </TooltipContent>
+                                                            </Tooltip>
                                                         </div>
                                                     </div>
                                                 )}
@@ -304,14 +311,14 @@ export default function CreateReportsPage() {
                 </div>
 
                 {/* Right Column - Song Search */}
-                <div className="flex flex-col min-h-full">
-                    <Card className="h-full">
-                        <CardHeader>
+                <div className="flex flex-col overflow-hidden">
+                    <Card className="flex flex-col h-full">
+                        <CardHeader className="shrink-0">
                             <CardTitle>Song Library</CardTitle>
                             <CardDescription>Search and add songs to your service</CardDescription>
                         </CardHeader>
-                        <CardContent className="space-y-4">
-                            <div className="relative">
+                        <CardContent className="flex flex-col flex-1 space-y-4 overflow-hidden">
+                            <div className="relative shrink-0">
                                 <Search className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
                                 <Input
                                     ref={searchInputRef}
@@ -322,7 +329,7 @@ export default function CreateReportsPage() {
                                 />
                             </div>
 
-                            <div className="max-h-full space-y-2 overflow-y-auto">
+                            <div className="flex-1 space-y-2 overflow-y-auto">
                                 {filteredSongs.length === 0 ? (
                                     <div className="text-muted-foreground py-8 text-center">{searchQuery ? <p>No songs found matching {searchQuery}</p> : <p>All songs have been selected</p>}</div>
                                 ) : (
@@ -335,6 +342,7 @@ export default function CreateReportsPage() {
                                             lastPlayed={new Date()}
                                             timesPlayedThreeMonths={4}
                                             onClick={() => addSong(song)}
+                                            trending="up"
                                         />
                                     ))
                                 )}

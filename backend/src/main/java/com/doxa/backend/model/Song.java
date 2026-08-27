@@ -14,7 +14,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @NoArgsConstructor
-public class        Song {
+public class Song {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
